@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useRef, useEffect, useMemo, SyntheticEvent } from 'react';
 
 function getSplitedTime(milliseconds: number): number[] {
     /*
@@ -16,7 +16,14 @@ function getSplitedTime(milliseconds: number): number[] {
     return [days, hours, minutes, seconds];
 }
 
-function formatTime(milliseconds: number): any {
+type FormattedTime = {
+    formattedDays: string;
+    formattedHours: string;
+    formattedMinutes: string;
+    formattedSeconds: string;
+}
+
+function formatTime(milliseconds: number): FormattedTime {
     const [days, hours, minutes, seconds] = getSplitedTime(milliseconds);
 
     let formattedDays = '000';
@@ -119,9 +126,14 @@ function LeftTime() {
 }
 
 function EmailSubscription() {
+    function onSubmit(e: SyntheticEvent) {
+        e.preventDefault();
+        console.log("not ready yet");
+    }
+
     return (
         <div id="email-subscription">
-            <form>
+            <form onSubmit={onSubmit}>
                 <input
                     type="email"
                     placeholder="Your email address"
