@@ -77,7 +77,7 @@ function StartingMessage() {
 
 function LeftTime() {
     let intervalId = useRef<number|null>(null);
-    const dueDate = useMemo(() => new Date("2021-5-20").getTime(), []);
+    const dueDate = useMemo(() => new Date("2021-5-23").getTime(), []);
     const [currentTime, setCurrentTime] = useState<number>(new Date().getTime());
     const timeLeft = useMemo(() => dueDate - currentTime, [dueDate, currentTime]);
     const {
